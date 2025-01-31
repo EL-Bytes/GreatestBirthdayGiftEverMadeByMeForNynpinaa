@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="nyn.png">
+    <title>My wish for you</title>
+    <style>
+        /* Poppins Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('new.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            color: #ff69b4;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1s ease-in;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .message {
+            font-size: 24px;
+            color: white;
+            margin: 20px 0;
+            background-color: rgba(255, 182, 193, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .music-controls {
+            margin: 20px 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .play-button, .mute-button, .view-button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 8px 16px; /* Reduced padding for smaller buttons */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Reduced font size */
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 5px;
+            animation: fadeIn 1s ease-in;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 1s;
+        }
+
+        .play-button:hover, .mute-button:hover, .view-button:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(255, 182, 193, 0.8);
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .top-image {
+            position: relative;
+            margin: 20px 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .top-image img {
+            width: 500px;
+            border-radius: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .circle-image {
+            width: 300px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+            border: 5px solid #ff69b4;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .circle-image img {
+            width: 100%;
+            height: auto;
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* New styles for quotes */
+        .quote {
+            font-size: 20px;
+            color: #ff69b4;
+            margin: 20px 0;
+            font-style: italic;
+            animation: fadeIn 1s ease-in;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 1.5s;
+        }
+
+        /* Slideshow styles */
+        .slideshow {
+            position: relative;
+            max-width: 400px; /* Reduced width for smaller slideshow */
+            margin: auto;
+            overflow: hidden;
+            border-radius: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .slides {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .slideshow img {
+            width: 100%; /* Keep the image responsive */
+            border-radius: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            opacity: 0.8;
+            animation: fall 5s infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        nav {
+            position: relative;
+            z-index: 2; 
+            display: flex;
+            padding: 15px 30px;
+            align-items: center;
+            background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+            border-radius: 10px; /* Rounded edges */
+            backdrop-filter: blur(10px); /* Blurred background */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1; 
+        }
+
+        nav li {
+            position: relative;
+            margin-right: 30px; /* Increased spacing */
+        }
+
+        nav a {
+            color: #ff69b4; /* Hot pink color */
+            text-decoration: none;
+            padding: 10px 15px; /* More padding for a button-like feel */
+            border-radius: 5px; /* Rounded button edges */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            font-size: 18px; /* Increase font size */
+            font-weight: bold; /* Make text bold */
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 105, 180, 0.3); /* Light pink hover effect */
+            color: white; /* Change text color on hover */
+        }
+
+        .logo {
+            width: 80px; 
+            height: auto; 
+            margin-right: 20px; 
+        }
+
+        .signOut {
+            margin-left: 350px; /* Align sign out to the right */
+        }
+
+        .nav-logo {
+            flex: 1;
+            margin-left: 20px; /* Adjusted margin */
+        }
+
+        .nav-logo p {
+            color: #ff69b4; /* Hot pink color for the logo text */
+            font-size: 36px; /* Slightly smaller font size */
+            font-weight: 700; /* Bold font */
+        }
+
+        .center {
+            margin-left: 430px;
+        }
+
+        .custom-footer {
+            position: absolute; /* Position the footer absolutely */
+            bottom: 0; /* Align it to the bottom */
+            left: 0; /* Align it to the left */
+            right: 0; /* Align it to the right */
+            text-align: center;
+            padding: 10px; /* Increased padding for a more spacious feel */
+            color: white;
+            font-size: 18px; /* Font size for the footer */
+            background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+        }
+
+        .custom-footer p {
+            margin: 5px 0; /* Spacing between paragraphs */
+        }
+
+        .custom-footer p:first-child {
+            color: #ff69b4; /* Hot pink color */
+            font-weight: bold; /* Make text bold */
+            font-size: 20px; /* Slightly larger for emphasis */
+        }
+
+        .custom-footer p:last-child {
+            font-size: 14px; /* Smaller size for copyright notice */
+            color: rgba(255, 255, 255, 0.7); /* Lighter color for subtlety */
+        }
+    </style>
+</head>
+<body>
+    <nav>   
+        <div class="nav-logo">
+            <p>Nynpina.</p> 
+        </div>
+        <ul class="center">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="photo.html">Photo</a></li>
+            <li><img src="nyn.png" name="Logo" class="logo" alt="Logo"></li>
+            <li><a href="aboutus.html" style="margin-left: -30px;">About Us</a></li>
+            <li><a href="wish.html">My Wish</a></li>   
+        </ul>
+        <ul class="signOut">
+            <li><a href="index.html">Sign Out</a></li>
+        </ul>       
+    </nav>
+
+    <div class="confetti">
+        <div style="left: 10%; animation-delay: 0s;"></div>
+        <div style="left: 20%; animation-delay: 0.5s;"></div>
+        <div style="left: 30%; animation-delay: 1s;"></div>
+        <div style="left: 40%; animation-delay: 1.5s;"></div>
+        <div style="left: 50%; animation-delay: 2s;"></div>
+        <div style="left: 60%; animation-delay: 2.5s;"></div>
+        <div style="left: 70%; animation-delay: 3s;"></div>
+        <div style="left: 80%; animation-delay: 3.5s;"></div>
+        <div style="left: 90%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="circle-image">
+        <img src="you.jpg" alt="You Image">
+    </div>
+
+    <h1 style="margin-top:-20px">Happy Birthday!</h1>
+    <div class="message" style="margin-top:-10px">
+        (Tekan button bawah dulu baru baca oceyy) Wishing you a day filled with love, joy, and all your favorite things! I'm sorry for everything Nynpina! Maybe someone like me doesn't deserve someone like you, but I hope you know how much you mean to me. For now, I hope you enjoy this birthday present, nanti da kerja aye bagi hadiah oceyy? By the time you see this message, I'm in the examination hall, wish me luck kayy. You are always gonna be my budak nakal busuk, muka jangan masam2 okay? hmu if you need anything Nynpina < 3 Hope you enjoy this pwesent 🎉 Sorry for everything! < 3 
+    </div>
+
+    <div class="quote" style="margin-top:-10px">
+        "You are the sunshine that brightens my day. Happy Birthday!"
+    </div>
+
+    <div class="slideshow">
+        <div class="slides active">
+            <img src="shirt.jpg" alt="Memorable Moment 1">
+        </div>
+        <div class="slides">
+            <img src="ice.jpg" alt="Memorable Moment 2">
+        </div>
+        <div class="slides">
+            <img src="bv.jpg" alt="Memorable Moment 3">
+        </div>
+        <div class="slides">
+            <img src="gf.jpg" alt="Memorable Moment 4">
+        </div>
+
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <div class="music-controls">
+        <audio id="birthday-music" loop>
+            <source src="bday.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+        <button class="play-button" onclick="playMusic()">Play Music</button>
+        <button class="mute-button" onclick="muteMusic()">Mute Music</button>
+    </div>
+
+    <button style="margin-top:-20px" class="view-button" onclick="window.location.href='family.html'">View Family</button>
+
+    <script>
+        const music = document.getElementById('birthday-music');
+
+        function playMusic() {
+            music.play();
+        }
+
+        function muteMusic() {
+            music.muted = !music.muted;
+            const muteButton = document.querySelector('.mute-button');
+            muteButton.textContent = music.muted ? 'Unmute Music' : 'Mute Music';
+        }
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            const slides = document.getElementsByClassName("slides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex - 1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+
+        function changeSlide(n) {
+            slideIndex += n;
+            const slides = document.getElementsByClassName("slides");
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            if (slideIndex < 1) { slideIndex = slides.length; }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slides[slideIndex - 1].style.display = "block";  
+        }
+    </script>
+
+</body>
+</html>

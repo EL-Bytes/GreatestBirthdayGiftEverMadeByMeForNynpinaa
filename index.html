@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="nyn.png">
+    <title>Welcome Nynpinaa</title>
+
+    <style>
+        /* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url('new.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;   
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Light background for contrast */
+    position: relative;
+}   
+
+.welcomeText {
+    text-align: center;
+    color: #ffffff; /* Text color */
+    position: relative; /* Changed to relative for better layout */
+    padding: 20px;
+    border-radius: 15px; /* Rounded corners */
+    background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Soft shadow */
+}
+
+.content, .desc {
+    font-size: 24px;
+    margin: 10px 0; /* Set margin to create space above and below */
+    color: #ffffff; /* Ensure text is readable */
+}
+
+.main {
+    font-size: 100px; 
+    margin: -10px 10px; /* Set margin to create space above and below */
+    background: linear-gradient(20deg, #a500b5, #ff0080); /* Berry-inspired colors */                    
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+    font-weight: 700; 
+    text-shadow: 2px 2px px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-250px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main:hover {
+    text-shadow: 4px 4px 8px rgba(233, 64, 64, 0.7);
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+}
+
+.logo {
+    width: 150px; 
+    margin-bottom: 20px; 
+}
+
+.btnH {
+    font-size: 15px; 
+    font-weight: 500;
+    color: white;
+    height: 45px;
+    width: 200px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: linear-gradient(40deg, #ff6f61, #ff9a9e); /* Softer gradient */
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(51, 40, 40, 0.6), 0 0 20px rgba(67, 176, 241, 0.6);
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btnH:hover {
+    box-shadow: 0 0 30px rgba(247, 0, 21, 0.8), 0 30px rgba(67, 176, 241, 0.8);
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.btnH:focus {
+    outline: none; /* Remove default outline */
+}
+
+.btnH::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* Light overlay effect */
+    border-radius: 30px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btnH:hover::after {
+    opacity: 1; /* Show overlay on hover */
+}
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.confetti div {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff69b4;
+    opacity: 0.8;
+    animation: fall 5s infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+    </style>
+</head>
+<body>
+<div class="confetti">
+        <div style="left: 10%; animation-delay: 0s;"></div>
+        <div style="left: 20%; animation-delay: 0.5s;"></div>
+        <div style="left: 30%; animation-delay: 1s;"></div>
+        <div style="left: 40%; animation-delay: 1.5s;"></div>
+        <div style="left: 50%; animation-delay: 2s;"></div>
+        <div style="left: 60%; animation-delay: 2.5s;"></div>
+        <div style="left: 70%; animation-delay: 3s;"></div>
+        <div style="left: 80%; animation-delay: 3.5s;"></div>
+        <div style="left: 90%; animation-delay: 4s;"></div>
+    </div>
+    <div class="welcomeText">
+        <img src="nyn.png" alt="Logo" class="logo">
+        <h1 style="margin-bottom: -10px;margin-top:-30px">Welcome</h1>        
+        <h1 class="main">Nynpina</h1>
+        <h1 class="content">To your very own birthday website</h1>
+        <br>
+        <button class="btnH" onclick="window.location.href='login.html'">Letsgoo!</button>
+    </div>
+
+</body>
+</html>

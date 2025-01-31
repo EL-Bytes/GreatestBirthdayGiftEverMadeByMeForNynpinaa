@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="nyn.png">
+    <title>All about us <3</title>
+    <style>
+        /* Poppins Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('new.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        nav {
+            position: relative;
+            z-index: 2; 
+            display: flex;
+            padding: 15px 30px;
+            align-items: center;
+            background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+            border-radius: 10px; /* Rounded edges */
+            backdrop-filter: blur(10px); /* Blurred background */
+            animation: slideDown 0.5s ease-in-out; /* Slide down animation */
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1; 
+        }
+
+        nav li {
+            position: relative;
+            margin-right: 30px; /* Increased spacing */
+        }
+
+        nav a {
+            color: #ff69b4; /* Hot pink color */
+            text-decoration: none;
+            padding: 10px 15px; /* More padding for a button-like feel */
+            border-radius: 5px; /* Rounded button edges */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            font-size: 18px; /* Increase font size */
+            font-weight: bold; /* Make text bold */
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 105, 180, 0.3); /* Light pink hover effect */
+            color: white; /* Change text color on hover */
+        }
+
+        .logo {
+            width: 80px; 
+            height: auto; 
+            margin-right: 20px; 
+        }
+
+        .signOut {
+            margin-left: 350px; /* Align sign out to the right */
+        }
+
+        .nav-logo {
+            flex: 1;
+            margin-left: 20px; /* Adjusted margin */
+        }
+
+        .nav-logo p {
+            color: #ff69b4; /* Hot pink color for the logo text */
+            font-size: 36px; /* Slightly smaller font size */
+            font-weight: 700; /* Bold font */
+        }
+
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            opacity: 0.8;
+            animation: fall 5s infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            overflow: hidden; /* Hide overflow for zoom effect */
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 1s forwards; /* Fade in animation */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Fade in */
+            }
+        }
+
+        video {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 10s infinite alternate; /* Zoom animation */
+            transition: transform 0.5s;
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .about-text {
+            text-align: center;
+            color: #ff69b4; /* Hot pink color for the text */
+            font-size: 24px;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+            background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+            border-radius: 15px; /* More rounded edges */
+            padding: 3px; /* Increased padding */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+            opacity: 0; /* Start hidden */
+            transform: translateY(-20px); /* Start slightly above */
+            animation: slideIn 0.5s forwards; /* Animation for background text */
+            animation-delay: 0.5s; /* Delay for text to appear after video */
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1; /* Fade in */
+                transform: translateY(0); /* Move to final position */
+            }
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            perspective: 1000px; /* Enable 3D perspective */
+            position: relative; /* Position relative for child elements */
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start slightly below */
+            animation: fadeInUp 0.6s forwards; /* Animation for fade in */
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1; /* Fade in */
+                transform: translateY(0); /* Move to final position */
+            }
+        }
+
+        .gallery-item img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.6s; /* Smooth flip effect */
+            animation: fadeIn 1s ease-in-out; /* Fade in for images */
+        }
+
+        .gallery-item:hover img {
+            transform: rotateY(180deg); /* Flip effect on hover */
+        }
+
+        .gallery-item .text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 182, 193, 0.9); /* Pale pink background */
+            color: #333; /* Dark text color for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.6s; /* Fade in effect */
+            font-size: 18px; /* Font size for text */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+        }
+
+        .gallery-item:hover .text {
+            opacity: 1; /* Show text on hover */
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.75s; }
+        .gallery-item:nth-child(3) { animation-delay: 1s; }
+        .gallery-item:nth-child(4) { animation-delay: 1.25s; }
+        .gallery-item:nth-child(5) { animation-delay: 1.5s; } /* New photo animation delay */
+        .gallery-item:nth-child(6) { animation-delay: 1.75s; } /* New photo animation delay */
+
+        footer {
+            background-color: rgba(255, 182, 193, 0.8);
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        footer p {
+            margin: 5px 0;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        footer p:nth-child(1) {
+            animation: fadeIn 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        footer p:nth-child(2) {
+            animation: fadeIn 1s forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-item img {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+        .about-text {
+            margin-top: -10px;
+            margin-bottom: -10px;
+        }
+
+        .custom-footer {
+            position: absolute; /* Position the footer absolutely */
+            bottom: 0; /* Align it to the bottom */
+            left: 0; /* Align it to the left */
+            right: 0; /* Align it to the right */
+            text-align: center;
+            padding: 10px; /* Increased padding for a more spacious feel */
+            color: white;
+            font-size: 18px; /* Font size for the footer */
+            background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+        }
+
+        .custom-footer p {
+            margin: 5px 0; /* Spacing between paragraphs */
+        }
+
+        .custom-footer p:first-child {
+            color: #ff69b4; /* Hot pink color */
+            font-weight: bold; /* Make text bold */
+            font-size: 20px; /* Slightly larger for emphasis */
+        }
+
+        .custom-footer p:last-child {
+            font-size: 14px; /* Smaller size for copyright notice */
+            color: rgba(255, 255, 255, 0.7); /* Lighter color for subtlety */
+        }
+                /* Navigation Styles */
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    position: relative;
+    z-index: 2; 
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+    background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+    border-radius: 10px; /* Rounded edges */
+    backdrop-filter: blur(10px); /* Blurred background */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; 
+}
+
+nav li {
+    position: relative;
+    margin-right: 30px; /* Increased spacing */
+}
+
+nav a {
+    color: #ff69b4; /* Hot pink color */
+    text-decoration: none;
+    padding: 10px 15px; /* More padding for a button-like feel */
+    border-radius: 5px; /* Rounded button edges */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+}
+
+nav a:hover {
+    background-color: rgba(255, 105, 180, 0.3); /* Light pink hover effect */
+    color: white; /* Change text color on hover */
+}
+
+.logo {
+    width: 80px; 
+    height: auto; 
+    margin-right: 20px; 
+}
+
+.signOut {
+    margin-left: 350px; /* Align sign out to the right */
+}
+
+.nav-logo {
+    flex: 1;
+    margin-left: 20px; /* Adjusted margin */
+}
+
+.nav-logo p {
+    color: #ff69b4; /* Hot pink color for the logo text */
+    font-size: 36px; /* Slightly smaller font size */
+    font-weight: 700; /* Bold font */
+}
+
+.center {
+    margin-left: 430px;
+}
+
+    </style>
+</head>
+<body>
+    <nav>   
+        <div class="nav-logo">
+            <p>Nynpina.</p> 
+        </div>
+        <ul class="center">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="photo.html">Photo</a></li>
+            <li><img src="nyn.png" name="Logo" class="logo" alt="Logo"></li>
+            <li><a href="aboutus.html" style="margin-left: -30px;">About Us</a></li>
+            <li><a href="wish.html">My Wish</a></li>   
+        </ul>
+        <ul class="signOut">
+            <li><a href="index.html">Sign Out</a></li>
+        </ul>       
+    </nav>
+
+    <div class="confetti">
+        <div style="left: 10%; animation-delay: 0s;"></div>
+        <div style="left: 20%; animation-delay: 0.5s;"></div>
+        <div style="left: 30%; animation-delay: 1s;"></div>
+        <div style="left: 40%; animation-delay: 1.5s;"></div>
+        <div style="left: 50%; animation-delay: 2s;"></div>
+        <div style="left: 60%; animation-delay: 2.5s;"></div>
+        <div style="left: 70%; animation-delay: 3s;"></div>
+        <div style="left: 80%; animation-delay: 3.5s;"></div>
+        <div style="left: 90%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="video-container">
+        <video id="background-video" autoplay muted loop controls>
+            <source src="bideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="about-text">
+        <h1 style="animation: fadeIn 1s forwards; animation-delay: 0.5s;">This is about us</h1>
+        <p style="color: white; animation: fadeIn 1s forwards; animation-delay: 1s;">The journey of our relationship is truly interesting, Jom kita tengok balik some of the moments kita <br>(Kalau boleh nak masukkan semua au hmphh) *Hover dekat gambar bawah nii*</p>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="1.jpg" alt="Image 1">
+            <div class="text">First time amik gambar sama2, time ni masih malu2 walaupun setiap jumaat dapat aishem. The last year at school and kesian dia kena hidup sorang2 dekat sekolah hm</div>
+        </div>
+        <div class="gallery-item">
+            <img src="2.jpg" alt="Image 2">
+            <div class="text">Ni first time keluar sama2, tak jalan mana2 pon tapi time ni paling syok sebab dapat acah2 jogging. Lari2 dekat taman pastu makan anw!!! Pastu terpaksa balik awal naik grab sebab nak tengok moviee:(</div>
+        </div>
+        <div class="gallery-item">
+            <img src="3.jpg" alt="Image 3">
+            <div class="text">Time ni best gilaa, keluar tengok suasana layan lagu nyanyi2 yeayyy cuma dapat keluar kejap je time ni hmm</div>
+        </div>
+        <div class="gallery-item">
+            <img src="0.jpg" alt="Image 5">
+            <div class="text">Time ni time befday aye,kena paksa jugak keluar walaupun dia ni takut sangat jiran nampak hmphh, tapi ni seronok sebab dapat spend time and dapat hadiah yeayyy</div>
+        </div>  
+        <div class="gallery-item">
+            <img src="4.jpg" alt="Image 6">
+            <div class="text">Time ni amek dia kat KTM lepastu bawak gi makan 4Fingers!(Masheh belanjaa), naik KTM pon bawak Mochi, Takmalu!!! </div>
+        </div>  
+        <div class="gallery-item">
+            <img src="middle.jpg" alt="Image 7">
+            <div class="text">I donnolaa gambar ni pasal apa tapi yang penting kita nampak cute and aye nampak paling cantik hehehe. Aye harap aye ada gambar yang aye belikan awak cake pstu kita makan sama2 kat discord tu. Sweet gila, sebab nak awak sambut befday je tau hmphh</div>
+        </div> 
+    </div>
+    
+</body>
+</html>

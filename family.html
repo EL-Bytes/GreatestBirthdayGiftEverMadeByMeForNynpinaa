@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="nyn.png">
+    <title>Family Nynpinaa!</title>
+    <style>
+        /* Poppins Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('ice.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            color: #ff69b4;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1s ease-in;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .message {
+            font-size: 24px;
+            color: white;
+            margin: 20px 0;
+            background-color: rgba(255, 182, 193, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .message:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .family-images {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .family-images img {
+            border-radius: 15px;
+            transition: transform 0.5s, box-shadow 0.5s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .family-images img:first-child {
+            width: 40%; /* Larger image */
+        }
+
+        .family-images img:last-child {
+            width: 40%; /* Smaller image */
+            margin-left: 10px; /* Space between images */
+        }
+
+        .family-images img:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+
+        .footer-message {
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+            margin: 20px 0;
+            font-style: italic;
+            animation: fadeIn 1s ease-in;
+            background-color: rgba(255, 182, 193, 0.8);
+            padding: 20px;
+            transition: transform 0.3s, background-color 0.3s; /* Added transition */
+        }
+
+        .footer-message:hover {
+            transform: scale(1.02); /* Slightly enlarge on hover */
+            background-color: rgba(255, 182, 193, 0.9); /* Darker background on hover */
+        }
+
+        footer {
+            color: #ff69b4;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            z-index: 3;
+            font-size: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            opacity: 0.8;
+            animation: fall 5s infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Navigation Styles */
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    position: relative;
+    z-index: 2; 
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+    background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+    border-radius: 10px; /* Rounded edges */
+    backdrop-filter: blur(10px); /* Blurred background */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; 
+}
+
+nav li {
+    position: relative;
+    margin-right: 30px; /* Increased spacing */
+}
+
+nav a {
+    color: #ff69b4; /* Hot pink color */
+    text-decoration: none;
+    padding: 10px 15px; /* More padding for a button-like feel */
+    border-radius: 5px; /* Rounded button edges */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+}
+
+nav a:hover {
+    background-color: rgba(255, 105, 180, 0.3); /* Light pink hover effect */
+    color: white; /* Change text color on hover */
+}
+
+.logo {
+    width: 80px; 
+    height: auto; 
+    margin-right: 20px; 
+}
+
+.signOut {
+    margin-left: 350px; /* Align sign out to the right */
+}
+
+.nav-logo {
+    flex: 1;
+    margin-left: 20px; /* Adjusted margin */
+}
+
+.nav-logo p {
+    color: #ff69b4; /* Hot pink color for the logo text */
+    font-size: 36px; /* Slightly smaller font size */
+    font-weight: 700; /* Bold font */
+}
+
+.center {
+    margin-left: 430px;
+}
+
+        .signOut {
+            margin-left: 350px; /* Align sign out to the right */
+        }
+
+        .nav-logo {
+            flex: 1;
+            margin-left: 20px; /* Adjusted margin */
+        }
+
+        .nav-logo p {
+            color: #ff69b4; /* Hot pink color for the logo text */
+            font-size: 36px; /* Slightly smaller font size */
+            font-weight: 700; /* Bold font */
+        }
+
+        /* Footer styles */
+        .custom-footer {
+            position: absolute; /* Position the footer absolutely */
+            bottom: 0; /* Align it to the bottom */
+            left: 0; /* Align it to the left */
+            right: 0; /* Align it to the right */
+            text-align: center;
+            padding: 10px; /* Increased padding for a more spacious feel */
+            color: white;
+            font-size: 18px; /* Font size for the footer */
+            background-color: rgba(255, 182, 193, 0.47); /* Pale pink background */
+        }
+
+        .custom-footer p {
+            margin: 5px 0; /* Spacing between paragraphs */
+        }
+
+        .custom-footer p:first-child {
+            color: #ff69b4; /* Hot pink color */
+            font-weight: bold; /* Make text bold */
+            font-size: 20px; /* Slightly larger for emphasis */
+        }
+
+        .custom-footer p:last-child {
+            font-size: 14px; /* Smaller size for copyright notice */
+            color: rgba(255, 255, 255, 0.7); /* Lighter color for subtlety */
+        }
+    </style>
+</head>
+<body>
+    <nav>   
+        <div class="nav-logo">
+            <p>Nynpina.</p> 
+        </div>
+        <ul class="center">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="photo.html">Photo</a></li>
+            <li><img src="nyn.png" name="Logo" class="logo" alt="Logo"></li>
+            <li><a href="aboutus.html" style="margin-left: -30px;">About Us</a></li>
+            <li><a href="wish.html">My Wish</a></li>   
+        </ul>
+        <ul class="signOut">
+            <li><a href="index.html">Sign Out</a></li>
+        </ul>       
+    </nav>
+
+    <div class="confetti">
+        <div style="left: 10%; animation-delay: 0s;"></div>
+        <div style="left: 20%; animation-delay: 0.5s;"></div>
+        <div style="left: 30%; animation-delay: 1s;"></div>
+        <div style="left: 40%; animation-delay: 1.5s;"></div>
+        <div style="left: 50%; animation-delay: 2s;"></div>
+        <div style="left: 60%; animation-delay: 2.5s;"></div>
+        <div style="left: 70%; animation-delay: 3s;"></div>
+        <div style="left: 80%; animation-delay: 3.5s;"></div>
+        <div style="left: 90%; animation-delay: 4s;"></div>
+    </div>
+
+    <h1>Also not forget your family <3</h1>
+    <div class="message">
+        Your family, Umi and Ayah. I hope they are in good condition and always support you in every step of your journey. Semoga diorang sihat selalu and murah rezeki so diorang boleh belanja awak banyak2 hmphh. Ingat ni! Umi and ayah ada dengan awak, so do I. Semua tak pergi mana pon boyy
+
+    </div>
+
+    <div class="family-images">
+        <img src="top.jpg" alt="Family Image">
+        <img src="fam.jpg" alt="Family Image">
+    </div>
+
+    <div class="footer-message">
+        On this special day, I want to remind you how much you are loved and cherished by them. 
+        Your laughter and joy light up mine and their lives. So be happy okay Nynpina encemboy?
+        May your birthday be filled with love and laughter. Enjoy okayy? Jangan stghess2, semua orang ada dengan awak. Awakkan gudboy, Semua sayang awak <3 Kalau awak baca sampai sini maknanya inilah penghujung hadiah awak, Harap awak sukaa hehe, Gudboy aye!!!
+    </div>
+
+</footer>
+</body>
+</html>
